@@ -1,10 +1,14 @@
 type graphql;
 
 // not used currently
-[@bs.module "gatsby"] external graphql: 'any = "graphql";
+// [@bs.module "gatsby"] external graphql: 'any = "graphql";
 
+// [@bs.module "gatsby"]
+// external useStaticQuery: string => Js.Json.t = "useStaticQuery";
 [@bs.module "gatsby"]
 external useStaticQuery: string => Js.Json.t = "useStaticQuery";
+
+[@bs.module "gatsby"] external graphql: string => string = "graphql";
 
 module Link = {
   [@bs.module "gatsby"] [@react.component]
@@ -36,11 +40,12 @@ type location = {
 
 type navigationOptions = {
   state: option(Js.Json.t),
-  replace: bool
+  replace: bool,
 };
 
 [@bs.module "@reach/router"] external navigate: string => unit = "navigate";
-[@bs.module "@reach/router"] external navigateWithOpts: (string, navigationOptions) => unit = "navigate";
+[@bs.module "@reach/router"]
+external navigateWithOpts: (string, navigationOptions) => unit = "navigate";
 
 // ___loader is a Gatsby global, that can enqueue routes to fetch
 let hover: string => unit = [%bs.raw
